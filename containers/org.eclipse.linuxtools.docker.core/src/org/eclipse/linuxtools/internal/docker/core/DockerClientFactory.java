@@ -70,6 +70,10 @@ public class DockerClientFactory {
 			final IRegistryAccount registryAccount)
 			throws DockerCertificateException {
 		final JerseyDockerClientBuilder builder = new JerseyDockerClientBuilder();
+		
+		// Set the Docker Client's timeout to infinity to avoid shutdown of 
+		builder.readTimeoutMillis(0);
+		
 		if (connectionSettings
 				.getType() == BindingType.UNIX_SOCKET_CONNECTION) {
 			final UnixSocketConnectionSettings unixSocketConnectionSettings = (UnixSocketConnectionSettings) connectionSettings;
